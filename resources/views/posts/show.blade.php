@@ -31,12 +31,13 @@
                 <form action="/posts/{{$post->id}}/comments" method="POST">
                     {{csrf_field()}}
                     <div class="form-group">
-                        <textarea name="body" id="body" placeholder="enter a comment" class="form-control"></textarea>
+                        <textarea required name="body" id="body" placeholder="enter a comment" class="form-control"></textarea>
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary">Add Comment</button>
                     </div>
                 </form>
+                @include('layouts.errors')
             </div>
         </div>
 

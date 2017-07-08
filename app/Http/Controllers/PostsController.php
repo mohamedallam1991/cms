@@ -10,6 +10,11 @@ class PostsController extends Controller
 {
 
     //
+//    public function __construct()
+//    {
+//        $this->middleware('auth')->except(['index', 'show']);
+//    }
+
     public function index()
     {
         $posts = Post::latest()->get();
@@ -21,26 +26,28 @@ class PostsController extends Controller
     {
 
 
-
         return view('posts.show', compact('post'));
 
     }
 
     public function create()
     {
+
         return view('posts.create');
 
     }
 
     public function store()
     {
+
         $this->validate(request(), [
-            'title' =>  'required',
-            'body'  =>  'required'
+            'title'   => 'required',
+            'body'    => 'required'
         ]);
 
-
-        Post::create(request(['title', 'body']));
+        auth()->user()->publish(
+          new Post(request(['title', 'body']))
+        );
 
         return redirect('/');
     }

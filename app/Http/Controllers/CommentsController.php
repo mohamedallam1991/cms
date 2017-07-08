@@ -10,13 +10,19 @@ use function redirect;
 
 class CommentsController extends Controller
 {
+
     //
     public function store(Post $post)
-        {
-            Comment::create([
-                'body' => request('body'),
-                'post_id' => $post->id
-            ]);
-            return back();
-        }
+    {
+        $this->validate(request(), ['body' => 'required']);
+        $post->addComment(request('body'));
+
+        return back();
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+
+    }
 }
