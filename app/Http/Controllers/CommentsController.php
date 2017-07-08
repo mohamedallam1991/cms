@@ -12,6 +12,11 @@ class CommentsController extends Controller
 {
 
     //
+    public function __construct()
+    {
+        $this->middleware('auth');
+
+    }
     public function store(Post $post)
     {
         $this->validate(request(), ['body' => 'required']);
@@ -20,9 +25,5 @@ class CommentsController extends Controller
         return back();
     }
 
-    public function user()
-    {
-        return $this->belongsTo(User::class);
 
-    }
 }

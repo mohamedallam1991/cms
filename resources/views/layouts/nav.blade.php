@@ -7,7 +7,10 @@
             <a class="nav-link" href="#">Press</a>
             <a class="nav-link" href="#">New hires</a>
             @if (Auth::check())
-            <a class="nav-link ml-auto" href="/logout">{{ Auth::user()->name }}</a>
+                <a class="nav-link ml-auto" href="/logout">{{ Auth::user()->name }}</a>
+            @else
+                    <a class="nav-link ml-auto" href="/login">Login</a>
+                    <a class="nav-link" href="/register">Register</a>
             @endif
             {{--@if(!Auth::check())--}}
                 {{--<a class="nav-link ml-auto" href="/register">Register</a>--}}

@@ -6,7 +6,9 @@
 
     </a>
 
-    {{--<p class="blog-post-meta"> {{$post->created_at->toFormattedDateString() }} by  <a href="#">{{ $post->user->name }}</a></p>--}}
+    <p class="blog-post-meta"> {{$post->created_at->toFormattedDateString() }} by  <a href="#">
+            {{$post->user ? $post->user->name : 'no user'}}
+        </a></p>
     <p>
         {{$post->body}}
     </p>
